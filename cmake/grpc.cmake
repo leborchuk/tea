@@ -57,7 +57,7 @@ elseif(GRPC_FETCHCONTENT)
   include(FetchContent)
   FetchContent_Declare(
     grpc
-    GIT_REPOSITORY ${GITHUB_MIRROR}/grpc/grpc.git
+    GIT_REPOSITORY ${GITHUB}/grpc/grpc.git
     GIT_TAG v1.62.3)
   FetchContent_MakeAvailable(grpc)
 

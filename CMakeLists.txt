@@ -44,7 +44,9 @@ if (NOT DEFINED GITLAB_URL)
     set(GITLAB_URL ssh://git@${GITLAB}:7999)
   endif()
 endif()
-set(GITHUB_MIRROR ${GITLAB_URL}/github-mirror)
+if (NOT DEFINED GITHUB)
+  set(GITHUB https://github.com)
+endif()
 
 add_subdirectory(vendor)
 
