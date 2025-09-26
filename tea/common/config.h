@@ -33,7 +33,7 @@ struct S3Config {
 
 struct Endpoint {
   std::string host;
-  uint16_t port;
+  uint16_t port{};
 
   bool operator==(const Endpoint&) const = default;
 };
@@ -226,8 +226,8 @@ enum TableType { kEmpty, kTeapot, kIceberg, kFile };
 using TableSource = std::variant<EmptyTable, TeapotTable, IcebergTable, FileTable>;
 
 struct TableConfig {
-  TableSource source;
-  Config config;
+  TableSource source{};
+  Config config{};
 };
 
 class ConfigSource {
