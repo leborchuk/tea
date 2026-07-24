@@ -1,3 +1,11 @@
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_extension WHERE extname = 'tea') THEN
+    CREATE EXTENSION tea;
+  END IF;
+END
+$$;
+DO
 SELECT COUNT(*) = 1 AS tea_extension_exists
 FROM pg_extension
 WHERE extname = 'tea';
