@@ -2,6 +2,11 @@
 # Configure and build tea against the gpdb installed in $HOME/local/gpdb.
 set -eo pipefail
 
+mkdir -p build/arrow-thirdparty
+if [ -d "$HOME/build/arrow-thirdparty" ]; then
+  cp -an "$HOME"/build/arrow-thirdparty/. build/arrow-thirdparty/
+fi
+
 cd build
 cmake -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo \
   -DGreenplum_ROOT="$HOME/local/gpdb" -DCMAKE_PREFIX_PATH="$HOME/local" \
