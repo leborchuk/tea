@@ -93,7 +93,10 @@ void UploadNessieCatalog([[maybe_unused]] const std::string& db_name, [[maybe_un
   file << upload_table_script;
   file.close();
 
-  std::string run_cmd = "python3 script.py " + db_name + " " + table_name + " " + location;
+  // Best-effort: no Nessie server is started for most smoke-test combinations
+  // (e.g. pynessie may not even be installed), so failures here are expected
+  // and shouldn't spam the logs with a Python traceback.
+  std::string run_cmd = "python3 script.py " + db_name + " " + table_name + " " + location + " >/dev/null 2>&1";
   [[maybe_unused]] auto return_code = std::system(run_cmd.c_str());
 #endif
 }

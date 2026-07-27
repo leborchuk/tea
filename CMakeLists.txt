@@ -54,6 +54,10 @@ if(TEA_BUILD_FDW)
   add_compile_definitions(TEA_BUILD_FDW)
 endif()
 
+if(TEA_BUILD_EXT)
+  add_compile_definitions(TEA_BUILD_EXT)
+endif()
+
 if(USE_NESSIE)
   add_compile_definitions(USE_NESSIE)
 endif()

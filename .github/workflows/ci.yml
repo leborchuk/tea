@@ -107,6 +107,7 @@ jobs:
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get install -y postgresql-16 postgresql-client-16
           pg_dropcluster 14 main || true
+          pg_dropcluster 16 main || true
 
       - name: Download runtime artifacts
         uses: actions/download-artifact@v4
