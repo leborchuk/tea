@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 # Run Tea pg_regress tests from a Tea source checkout staged under gpcontrib.
 #
-# Usage: run-pg-regress.sh <gpdb-source-dir> [database]
+# Usage: run-pg-regress.sh <gpdb-source-dir> [database] [tea_build_ext]
+#
+# tea_build_ext must match the TEA_BUILD_EXT value the runtime was built
+# with (ON by default). When ON, tea_extension.out is swapped for the
+# ext-enabled variant before running pg_regress, since the external-table
+# probe in tea_extension.sql behaves differently once the tea external-table
+# protocol is actually installed.
 set -eo pipefail
 
 gpdb_src="${1:?gpdb source directory is required}"
 database="${2:-tea_ci}"
+tea_build_ext="${3:-ON}"
 repo_root="$(pwd)"
 stage_dir="${gpdb_src}/gpcontrib/tea"
 extension_dir="${stage_dir}/extension"
@@ -36,6 +43,11 @@ tar \
   --exclude='./cmake-build-*' \
   --exclude='./out' \
   -cf - . | tar -xf - -C "${stage_dir}"
+
+if [ "${tea_build_ext}" = "ON" ]; then
+  cp "${extension_dir}/expected/tea_extension_ext_enabled.out" \
+     "${extension_dir}/expected/tea_extension.out"
+fi
 
 set +e
 make -C "${extension_dir}" installcheck \

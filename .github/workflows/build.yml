@@ -85,7 +85,7 @@ jobs:
         run: bash ci/deploy-tea-config.sh 2>&1 | tee build-logs/details/deploy-tea-config-pg-regress.log
 
       - name: Run Tea pg_regress installcheck
-        run: bash ci/run-pg-regress.sh gpdb tea_ci
+        run: bash ci/run-pg-regress.sh gpdb tea_ci ${{ inputs.open_gpdb && 'OFF' || 'ON' }}
 
       - name: Pack runtime artifacts
         run: bash ci/pack-artifacts.sh
