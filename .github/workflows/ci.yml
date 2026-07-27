@@ -141,7 +141,7 @@ jobs:
       - name: Start Lakekeeper
         shell: bash
         run: |
-          pg_createcluster -p 5433 16 main
+          pg_createcluster -p 5433 --locale=C.UTF-8 --encoding=UTF8 16 main
           sed -i 's/scram-sha-256/trust/g' /etc/postgresql/16/main/pg_hba.conf
           /etc/init.d/postgresql start
 
