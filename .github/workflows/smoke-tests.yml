@@ -101,7 +101,8 @@ jobs:
 
       - name: Start Redis
         run: |
-          redis-server --daemonize yes --dir /tmp --logfile build-logs/details/redis.log --pidfile /tmp/redis.pid
+          mkdir -p build-logs/details
+          redis-server --daemonize yes --dir /tmp --logfile "$(pwd)/build-logs/details/redis.log" --pidfile /tmp/redis.pid
           redis-cli ping
 
       - name: Run smoke tests
