@@ -5,7 +5,6 @@ BEGIN
   END IF;
 END
 $$;
-DO
 SELECT COUNT(*) = 1 AS tea_extension_exists
 FROM pg_extension
 WHERE extname = 'tea';
@@ -25,7 +24,6 @@ WHERE extname = 'tea';
 CREATE FOREIGN TABLE tea_fdw_empty_probe (a bigint)
 SERVER tea_server
 OPTIONS (location 'tea://special://empty');
-CREATE FOREIGN TABLE
 SELECT count(*)::int AS rows_read
 FROM tea_fdw_empty_probe;
  rows_read 
@@ -52,6 +50,4 @@ BEGIN
 END
 $$;
 NOTICE:  external table creation failed as expected
-DO
 DROP FOREIGN TABLE tea_fdw_empty_probe;
-DROP FOREIGN TABLE

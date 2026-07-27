@@ -10,6 +10,11 @@ on:
         description: Name of the runtime artifact to download
         required: true
         type: string
+      enable_external_tables:
+        description: Whether the runtime artifact was built with TEA_BUILD_EXT (external-table protocol)
+        required: false
+        default: true
+        type: boolean
 
 permissions:
   contents: read
@@ -87,6 +92,10 @@ jobs:
           redis-cli ping
 
       - name: Run smoke tests
+        # Skip external-table combinations when the runtime artifact was built
+        # with TEA_BUILD_EXT=OFF (open-gpdb): the tea external-table protocol
+        # isn't installed there, so CREATE READABLE EXTERNAL TABLE would fail.
+        if: matrix.table_type != 'external' || inputs.enable_external_tables
         run: bash ci/run-smoke.sh "${{ matrix.metadata_type }}" "${{ matrix.table_type }}" "${{ matrix.profile }}" 2>&1 | tee build-logs/details/smoke-${{ matrix.metadata_type }}-${{ matrix.table_type }}-${{ matrix.profile || 'default' }}.log
 
       - name: Upload smoke test logs

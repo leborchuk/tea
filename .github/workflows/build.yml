@@ -71,7 +71,7 @@ jobs:
         run: bash ci/verify-opengpdb-define.sh 2>&1 | tee build-logs/details/verify-opengpdb-define.log
 
       - name: Build Tea
-        run: bash ci/build-tea.sh 2>&1 | tee build-logs/details/build-tea.log
+        run: bash ci/build-tea.sh ${{ inputs.open_gpdb && 'OFF' || 'ON' }} 2>&1 | tee build-logs/details/build-tea.log
 
       - name: Run unit tests
         run: |

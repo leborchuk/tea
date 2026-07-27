@@ -69,6 +69,7 @@ jobs:
     uses: ./.github/workflows/smoke-tests.yml
     with:
       artifact_name: tea-runtime-open-gpdb
+      enable_external_tables: false
 
   rest-tests-agp:
     needs: build-tea-agp
