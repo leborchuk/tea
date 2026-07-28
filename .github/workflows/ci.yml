@@ -64,12 +64,13 @@ jobs:
   # Run the full tea smoke-test suite against open-gpdb. Kept separate (needs
   # only build-tea-open-gpdb) so the arenadata smoke-tests do not wait on the
   # open-gpdb build.
+  # TODO: pass enable_external_tables: false here once open-gpdb builds with
+  # TEA_BUILD_EXT=OFF in a follow-up PR; left at its default (true) for now.
   smoke-tests-open-gpdb:
     needs: build-tea-open-gpdb
     uses: ./.github/workflows/smoke-tests.yml
     with:
       artifact_name: tea-runtime-open-gpdb
-      enable_external_tables: false
 
   rest-tests-agp:
     needs: build-tea-agp

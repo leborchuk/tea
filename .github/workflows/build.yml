@@ -70,8 +70,10 @@ jobs:
         if: inputs.open_gpdb
         run: bash ci/verify-opengpdb-define.sh 2>&1 | tee build-logs/details/verify-opengpdb-define.log
 
+      # TODO: pass OFF for open-gpdb once external-table support is disabled
+      # for it in a follow-up PR; keep it ON for every fork for now.
       - name: Build Tea
-        run: bash ci/build-tea.sh ${{ inputs.open_gpdb && 'OFF' || 'ON' }} 2>&1 | tee build-logs/details/build-tea.log
+        run: bash ci/build-tea.sh ON 2>&1 | tee build-logs/details/build-tea.log
 
       - name: Run unit tests
         run: |
@@ -85,7 +87,7 @@ jobs:
         run: bash ci/deploy-tea-config.sh 2>&1 | tee build-logs/details/deploy-tea-config-pg-regress.log
 
       - name: Run Tea pg_regress installcheck
-        run: bash ci/run-pg-regress.sh gpdb tea_ci ${{ inputs.open_gpdb && 'OFF' || 'ON' }}
+        run: bash ci/run-pg-regress.sh gpdb tea_ci ON
 
       - name: Pack runtime artifacts
         run: bash ci/pack-artifacts.sh
