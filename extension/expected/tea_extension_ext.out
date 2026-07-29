@@ -1,6 +1,6 @@
-CREATE FOREIGN TABLE tea_ext_empty_probe (a bigint)
-SERVER tea_server
-OPTIONS (location 'tea://special://empty');
+CREATE READABLE EXTERNAL TABLE tea_ext_empty_probe (a bigint)
+LOCATION ('tea://special://empty')
+FORMAT 'custom' (formatter = tea_import) ENCODING 'UTF8';
 SELECT count(*)::int AS rows_read
 FROM tea_ext_empty_probe;
  rows_read 

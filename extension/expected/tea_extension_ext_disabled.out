@@ -1,10 +1,11 @@
-CREATE READABLE EXTERNAL TABLE tea_ext_empty_probe_ext (a bigint)
+CREATE READABLE EXTERNAL TABLE tea_ext_empty_probe (a bigint)
 LOCATION ('tea://special://empty')
-FORMAT 'custom' (formatter = tea_import);
+FORMAT 'custom' (formatter = tea_import) ENCODING 'UTF8';
+ERROR:  formatter function "tea_import" of type readable was not found
 SELECT count(*)::int AS rows_read
-FROM tea_fdw_empty_probe_ext;
-ERROR:  relation "tea_fdw_empty_probe_ext" does not exist
-LINE 2: FROM tea_fdw_empty_probe_ext;
+FROM tea_ext_empty_probe;
+ERROR:  relation "tea_ext_empty_probe" does not exist
+LINE 2: FROM tea_ext_empty_probe;
              ^
-DROP FOREIGN TABLE tea_fdw_empty_probe_ext;
-ERROR:  foreign table "tea_fdw_empty_probe_ext" does not exist
+DROP FOREIGN TABLE tea_ext_empty_probe;
+ERROR:  foreign table "tea_ext_empty_probe" does not exist

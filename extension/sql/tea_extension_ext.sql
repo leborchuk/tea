@@ -4,7 +4,7 @@ CREATE EXTENSION IF NOT EXISTS tea;
 
 CREATE READABLE EXTERNAL TABLE tea_ext_empty_probe (a bigint)
 LOCATION ('tea://special://empty')
-FORMAT 'custom' (formatter = tea_import);
+FORMAT 'custom' (formatter = tea_import) ENCODING 'UTF8';
 
 SELECT count(*)::int AS rows_read
 FROM tea_ext_empty_probe;
