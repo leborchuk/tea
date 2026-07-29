@@ -44,9 +44,9 @@ tar \
   --exclude='./out' \
   -cf - . | tar -xf - -C "${stage_dir}"
 
-if [ "${tea_build_ext}" = "ON" ]; then
-  cp "${extension_dir}/expected/tea_extension_ext_enabled.out" \
-     "${extension_dir}/expected/tea_extension.out"
+if [ "${tea_build_ext}" = "OFF" ]; then
+  cp "${extension_dir}/expected/tea_extension_ext_disabled.out" \
+     "${extension_dir}/expected/tea_extension_ext.out"
 fi
 
 set +e
