@@ -8,4 +8,4 @@ ERROR:  relation "tea_ext_empty_probe" does not exist
 LINE 2: FROM tea_ext_empty_probe;
              ^
 DROP EXTERNAL TABLE tea_ext_empty_probe;
-ERROR:  external table "tea_ext_empty_probe" does not exist
+ERROR:  table "tea_ext_empty_probe" does not exist
