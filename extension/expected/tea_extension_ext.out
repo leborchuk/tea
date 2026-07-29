@@ -8,4 +8,4 @@ FROM tea_ext_empty_probe;
          0
 (1 row)
 
-DROP FOREIGN TABLE tea_ext_empty_probe;
+DROP EXTERNAL TABLE tea_ext_empty_probe;

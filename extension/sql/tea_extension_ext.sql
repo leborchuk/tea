@@ -9,4 +9,4 @@ FORMAT 'custom' (formatter = tea_import) ENCODING 'UTF8';
 SELECT count(*)::int AS rows_read
 FROM tea_ext_empty_probe;
 
-DROP FOREIGN TABLE tea_ext_empty_probe;
+DROP EXTERNAL TABLE tea_ext_empty_probe;
