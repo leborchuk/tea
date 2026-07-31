@@ -9,3 +9,4 @@ LINE 2: FROM tea_ext_empty_probe;
              ^
 DROP EXTERNAL TABLE tea_ext_empty_probe;
 ERROR:  table "tea_ext_empty_probe" does not exist
+DROP EXTENSION tea;

@@ -10,3 +10,5 @@ SELECT count(*)::int AS rows_read
 FROM tea_fdw_empty_probe;
 
 DROP FOREIGN TABLE tea_fdw_empty_probe;
+
+DROP EXTENSION tea;

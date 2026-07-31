@@ -9,3 +9,4 @@ FROM tea_fdw_empty_probe;
 (1 row)
 
 DROP FOREIGN TABLE tea_fdw_empty_probe;
+DROP EXTENSION tea;
